@@ -1,82 +1,100 @@
 import { Button } from "@/components/ui/button";
-import { Play } from "lucide-react";
-import heroImage from "@/assets/hero-image.jpg";
+import { ArrowRight, Play, Eye, MapPin, Shield } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import vistickHero from "@/assets/vistick-hero.jpg";
 
 const Hero = () => {
+  const navigate = useNavigate();
+
   return (
-    <section className="relative min-h-screen bg-gradient-hero overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.1),transparent_70%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(255,255,255,0.05),transparent_70%)]" />
+    <section className="relative min-h-screen flex items-center overflow-hidden">
+      {/* Background Gradient */}
+      <div className="absolute inset-0 bg-gradient-hero opacity-5" />
       
-      <div className="container mx-auto px-6 pt-20 pb-16 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
-          {/* Left Column - Content */}
-          <div className="text-white space-y-8">
-            <div className="space-y-6">
-              <h1 className="text-5xl lg:text-7xl font-bold leading-tight">
-                Keep Your
-                <span className="block text-primary-glow">Loved Ones</span>
-                Safe & Connected
+      <div className="container relative z-10 py-16 md:py-24">
+        <div className="grid gap-8 lg:grid-cols-2 lg:gap-12 items-center">
+          {/* Content */}
+          <div className="space-y-8">
+            <div className="space-y-4">
+              <div className="inline-flex items-center rounded-full border border-primary/20 bg-primary/5 px-4 py-2 text-sm">
+                <Shield className="mr-2 h-4 w-4 text-primary" />
+                <span className="text-primary font-medium">Empowering Independence Since 2023</span>
+              </div>
+              
+              <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl md:text-6xl">
+                Navigate the World with{" "}
+                <span className="bg-gradient-hero bg-clip-text text-transparent">
+                  Confidence
+                </span>
               </h1>
-              <p className="text-xl lg:text-2xl text-white/90 leading-relaxed max-w-2xl">
-                Advanced health monitoring, real-time location tracking, and instant emergency alerts. 
-                Peace of mind for the whole family.
+              
+              <p className="text-xl text-muted-foreground leading-relaxed max-w-lg">
+                Vistick is the smart vision stick that transforms mobility for the blind and visually impaired. 
+                Real-time obstacle detection, GPS navigation, and emergency alerts - all in one intelligent device.
               </p>
             </div>
-            
+
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button variant="hero" size="xl" asChild>
-                <a href="/signup">Get Started Free</a>
-              </Button>
-              <Button 
-                variant="outline" 
+              <Button
                 size="xl"
-                className="border-white/30 text-white hover:bg-white/10 hover:border-white/50"
+                variant="hero"
+                onClick={() => navigate("/signup")}
+                className="group"
               >
-                <Play className="w-5 h-5" />
+                Get Started Free
+                <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+              </Button>
+              
+              <Button
+                size="xl"
+                variant="outline"
+                className="group"
+              >
+                <Play className="mr-2 h-5 w-5" />
                 Watch Demo
               </Button>
             </div>
-            
-            <div className="flex items-center gap-8 pt-8">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-white">50K+</div>
-                <div className="text-white/80">Families Protected</div>
+
+            {/* Trust Indicators */}
+            <div className="flex flex-wrap items-center gap-6 pt-4">
+              <div className="flex items-center gap-2">
+                <Eye className="h-5 w-5 text-primary" />
+                <span className="text-sm text-muted-foreground font-medium">10,000+ Lives Enhanced</span>
               </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-white">99.9%</div>
-                <div className="text-white/80">Uptime</div>
+              <div className="flex items-center gap-2">
+                <MapPin className="h-5 w-5 text-primary" />
+                <span className="text-sm text-muted-foreground font-medium">Available in 50+ Cities</span>
               </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-white">24/7</div>
-                <div className="text-white/80">Monitoring</div>
+              <div className="flex items-center gap-2">
+                <Shield className="h-5 w-5 text-primary" />
+                <span className="text-sm text-muted-foreground font-medium">FDA Approved</span>
               </div>
             </div>
           </div>
-          
-          {/* Right Column - Hero Image */}
-          <div className="relative">
-            <div className="relative z-10">
-              <img 
-                src={heroImage} 
-                alt="CareSync family safety monitoring dashboard" 
-                className="w-full h-auto rounded-2xl shadow-large"
+
+          {/* Product Image */}
+          <div className="relative lg:order-2">
+            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-large">
+              <img
+                src={vistickHero}
+                alt="Vistick Smart Vision Stick - A sleek white device with sensors and smart technology"
+                className="object-cover w-full h-full"
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/20 via-transparent to-transparent" />
             </div>
             
-            {/* Floating Elements */}
-            <div className="absolute -top-4 -right-4 w-24 h-24 bg-success rounded-full flex items-center justify-center shadow-glow">
-              <div className="text-white font-bold text-sm text-center">
-                <div>LIVE</div>
-                <div>24/7</div>
+            {/* Floating Feature Cards */}
+            <div className="absolute -top-6 -right-6 bg-card border border-border rounded-xl p-4 shadow-medium backdrop-blur">
+              <div className="flex items-center gap-3">
+                <div className="w-3 h-3 rounded-full bg-success animate-pulse"></div>
+                <span className="text-sm font-medium">Real-time Detection</span>
               </div>
             </div>
             
-            <div className="absolute -bottom-6 -left-6 bg-white p-4 rounded-xl shadow-large">
+            <div className="absolute -bottom-6 -left-6 bg-card border border-border rounded-xl p-4 shadow-medium backdrop-blur">
               <div className="flex items-center gap-3">
-                <div className="w-3 h-3 bg-success rounded-full animate-pulse"></div>
-                <div className="text-sm font-semibold text-foreground">All Family Members Safe</div>
+                <MapPin className="w-4 h-4 text-primary" />
+                <span className="text-sm font-medium">GPS Navigation</span>
               </div>
             </div>
           </div>

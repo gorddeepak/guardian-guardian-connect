@@ -1,85 +1,84 @@
-import { Button } from "@/components/ui/button";
-import { UserPlus, Settings, Shield, ArrowRight } from "lucide-react";
+import { Smartphone, UserPlus, Navigation } from "lucide-react";
+
+const steps = [
+  {
+    icon: Smartphone,
+    step: "01",
+    title: "Download & Setup",
+    description: "Download the Vistick app, create your profile, and pair your device in under 5 minutes with our voice-guided setup process.",
+    color: "primary",
+  },
+  {
+    icon: UserPlus,
+    step: "02", 
+    title: "Add Your Care Network",
+    description: "Invite family members and caregivers to join your network. Set emergency contacts and customize notification preferences.",
+    color: "accent",
+  },
+  {
+    icon: Navigation,
+    step: "03",
+    title: "Navigate with Confidence", 
+    description: "Start exploring with real-time guidance, obstacle detection, and GPS navigation. Your care network stays informed automatically.",
+    color: "success",
+  },
+];
 
 const HowItWorks = () => {
-  const steps = [
-    {
-      icon: UserPlus,
-      number: "01",
-      title: "Sign Up & Invite Family",
-      description: "Create your account and invite family members. Set up roles and permissions for caregivers, viewers, and emergency responders.",
-      color: "text-primary"
-    },
-    {
-      icon: Settings,
-      number: "02", 
-      title: "Connect Devices & Set Preferences",
-      description: "Pair smartphones, wearables, and health devices. Configure geofences, alert preferences, and emergency contacts.",
-      color: "text-secondary"
-    },
-    {
-      icon: Shield,
-      number: "03",
-      title: "Monitor & Stay Protected",
-      description: "Real-time monitoring begins immediately. Receive alerts, track locations, and access emergency features 24/7.",
-      color: "text-success"
-    }
-  ];
-
   return (
-    <section className="py-24 bg-background">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-6">
-            Get Started in
-            <span className="block text-primary">3 Simple Steps</span>
+    <section id="how-it-works" className="py-24">
+      <div className="container">
+        <div className="text-center space-y-4 mb-16">
+          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+            How Vistick{" "}
+            <span className="bg-gradient-accent bg-clip-text text-transparent">
+              Works
+            </span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Set up family safety monitoring in minutes. No technical expertise required.
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Get started in three simple steps and begin your journey to enhanced independence and peace of mind.
           </p>
         </div>
-        
-        <div className="max-w-5xl mx-auto">
-          <div className="grid lg:grid-cols-3 gap-8 lg:gap-12">
-            {steps.map((step, index) => (
-              <div key={index} className="relative">
-                <div className="text-center space-y-6">
-                  {/* Step Number */}
-                  <div className="relative">
-                    <div className="w-20 h-20 mx-auto rounded-full bg-gradient-card border-2 border-primary/20 flex items-center justify-center shadow-medium">
-                      <span className="text-2xl font-bold text-primary">{step.number}</span>
-                    </div>
-                    
-                    {/* Icon */}
-                    <div className={`absolute -bottom-2 -right-2 w-10 h-10 rounded-full bg-gradient-hero flex items-center justify-center shadow-glow`}>
-                      <step.icon className="w-5 h-5 text-white" />
-                    </div>
-                  </div>
-                  
-                  <div className="space-y-4">
-                    <h3 className="text-2xl font-bold text-foreground">{step.title}</h3>
-                    <p className="text-muted-foreground leading-relaxed">{step.description}</p>
-                  </div>
+
+        <div className="grid gap-12 md:grid-cols-3">
+          {steps.map((step, index) => (
+            <div key={index} className="text-center group">
+              {/* Step Number */}
+              <div className="relative mb-6">
+                <div className={`inline-flex items-center justify-center w-16 h-16 rounded-full bg-${step.color} text-white font-bold text-lg shadow-medium group-hover:shadow-glow transition-all duration-300`}>
+                  {step.step}
                 </div>
-                
-                {/* Arrow for larger screens */}
                 {index < steps.length - 1 && (
-                  <div className="hidden lg:block absolute top-10 -right-6 xl:-right-8">
-                    <ArrowRight className="w-8 h-8 text-primary/30" />
+                  <div className="hidden md:block absolute top-8 left-16 w-full h-px bg-border">
+                    <div className="absolute inset-0 bg-gradient-to-r from-border to-transparent" />
                   </div>
                 )}
               </div>
-            ))}
-          </div>
+
+              {/* Icon */}
+              <div className={`inline-flex p-4 rounded-xl bg-${step.color}/10 mb-4 group-hover:bg-${step.color}/20 transition-colors duration-300`}>
+                <step.icon className={`h-8 w-8 text-${step.color}`} />
+              </div>
+
+              {/* Content */}
+              <h3 className="text-xl font-semibold text-foreground mb-3">
+                {step.title}
+              </h3>
+              
+              <p className="text-muted-foreground leading-relaxed">
+                {step.description}
+              </p>
+            </div>
+          ))}
         </div>
-        
+
+        {/* Call to Action */}
         <div className="text-center mt-16">
-          <Button variant="hero" size="xl" asChild>
-            <a href="/signup">Start Free Trial</a>
-          </Button>
-          <p className="text-sm text-muted-foreground mt-4">
-            No credit card required • 14-day free trial • Cancel anytime
-          </p>
+          <p className="text-sm text-muted-foreground mb-4">Ready to get started?</p>
+          <div className="inline-flex items-center gap-2 text-primary font-medium">
+            <span>Setup takes less than 5 minutes</span>
+            <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+          </div>
         </div>
       </div>
     </section>

@@ -73,6 +73,7 @@ export default {
       },
       backgroundImage: {
         "gradient-hero": "var(--gradient-hero)",
+        "gradient-accent": "var(--gradient-accent)",
         "gradient-card": "var(--gradient-card)",
         "gradient-success": "var(--gradient-success)",
         "gradient-warning": "var(--gradient-warning)",
@@ -82,10 +83,12 @@ export default {
         medium: "var(--shadow-medium)",
         large: "var(--shadow-large)",
         glow: "var(--shadow-glow)",
+        accent: "var(--shadow-accent)",
       },
       transitionTimingFunction: {
         smooth: "var(--transition-smooth)",
         bounce: "var(--transition-bounce)",
+        gentle: "var(--transition-gentle)",
       },
       borderRadius: {
         lg: "var(--radius)",

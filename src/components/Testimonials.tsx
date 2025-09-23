@@ -1,74 +1,72 @@
-import { Card } from "@/components/ui/card";
-import { Star } from "lucide-react";
+import { Star, Quote } from "lucide-react";
+
+const testimonials = [
+  {
+    name: "Sarah Chen",
+    role: "Caregiver & Daughter",
+    content: "Vistick has given my father the independence he thought he'd lost. The real-time alerts give our family peace of mind while he maintains his dignity and freedom.",
+    rating: 5,
+    avatar: "SC"
+  },
+  {
+    name: "Michael Rodriguez", 
+    role: "Vistick User",
+    content: "The obstacle detection is incredibly accurate. I can navigate my neighborhood confidently, and my family stays informed without being intrusive. Life-changing technology.",
+    rating: 5,
+    avatar: "MR"
+  },
+  {
+    name: "Dr. Emily Watson",
+    role: "Orientation & Mobility Specialist",
+    content: "I recommend Vistick to all my clients. The combination of traditional mobility training with smart technology creates the best outcomes for independent living.",
+    rating: 5,
+    avatar: "EW"
+  }
+];
 
 const Testimonials = () => {
-  const testimonials = [
-    {
-      name: "Sarah Chen",
-      role: "Mother of 3",
-      avatar: "https://images.unsplash.com/photo-1494790108755-2616b3e7019c?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
-      content: "CareSync gives me incredible peace of mind. I can check on my elderly parents and my teenage kids all from one dashboard. The emergency alerts saved us when my mom fell and couldn't reach her phone.",
-      rating: 5
-    },
-    {
-      name: "Dr. Michael Rodriguez",
-      role: "Family Physician",
-      avatar: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
-      content: "I recommend CareSync to my patients with elderly family members. The health monitoring features and medication reminders have significantly improved compliance and early intervention.",
-      rating: 5
-    },
-    {
-      name: "Jennifer Park",
-      role: "Caregiver",
-      avatar: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
-      content: "As a professional caregiver, CareSync helps me monitor multiple clients efficiently. The geofencing alerts and activity tracking make my job so much easier and more effective.",
-      rating: 5
-    }
-  ];
-
   return (
-    <section className="py-24 bg-muted/20">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-6">
-            Trusted by Thousands of
-            <span className="block text-primary">Families Worldwide</span>
+    <section className="py-24 bg-gradient-card">
+      <div className="container">
+        <div className="text-center space-y-4 mb-16">
+          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+            Trusted by{" "}
+            <span className="bg-gradient-accent bg-clip-text text-transparent">
+              Thousands
+            </span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Real stories from families who trust CareSync to keep their loved ones safe and connected.
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Real stories from users and families who have enhanced their independence with Vistick.
           </p>
         </div>
-        
-        <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+
+        <div className="grid gap-8 md:grid-cols-3">
           {testimonials.map((testimonial, index) => (
-            <Card key={index} className="p-8 border-0 shadow-large hover:shadow-glow transition-smooth bg-card">
-              <div className="space-y-6">
-                {/* Star Rating */}
+            <div
+              key={index}
+              className="bg-card rounded-2xl p-6 shadow-soft border border-border hover:shadow-medium transition-all duration-300"
+            >
+              <div className="space-y-4">
+                <Quote className="h-8 w-8 text-primary/30" />
                 <div className="flex gap-1">
                   {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 fill-warning text-warning" />
+                    <Star key={i} className="h-4 w-4 fill-warning text-warning" />
                   ))}
                 </div>
-                
-                {/* Testimonial Content */}
-                <blockquote className="text-muted-foreground leading-relaxed">
+                <p className="text-muted-foreground leading-relaxed">
                   "{testimonial.content}"
-                </blockquote>
-                
-                {/* Author */}
-                <div className="flex items-center gap-4 pt-4 border-t border-border">
-                  <img 
-                    src={testimonial.avatar} 
-                    alt={testimonial.name}
-                    className="w-12 h-12 rounded-full object-cover shadow-medium"
-                  />
+                </p>
+                <div className="flex items-center gap-3 pt-4 border-t border-border">
+                  <div className="w-10 h-10 rounded-full bg-gradient-hero flex items-center justify-center text-white font-semibold">
+                    {testimonial.avatar}
+                  </div>
                   <div>
                     <div className="font-semibold text-foreground">{testimonial.name}</div>
                     <div className="text-sm text-muted-foreground">{testimonial.role}</div>
                   </div>
                 </div>
               </div>
-            </Card>
+            </div>
           ))}
         </div>
       </div>

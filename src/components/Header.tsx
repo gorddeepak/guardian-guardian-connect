@@ -1,86 +1,140 @@
 import { Button } from "@/components/ui/button";
-import { Shield, Menu } from "lucide-react";
-import { useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import { Eye, Menu, Moon, Sun } from "lucide-react";
+import { useState, useEffect } from "react";
 
 const Header = () => {
+  const navigate = useNavigate();
+  const [isDark, setIsDark] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  useEffect(() => {
+    const isDarkMode = localStorage.getItem('theme') === 'dark' || 
+      (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    setIsDark(isDarkMode);
+    document.documentElement.classList.toggle('dark', isDarkMode);
+  }, []);
+
+  const toggleTheme = () => {
+    const newIsDark = !isDark;
+    setIsDark(newIsDark);
+    localStorage.setItem('theme', newIsDark ? 'dark' : 'light');
+    document.documentElement.classList.toggle('dark', newIsDark);
+  };
+
+  const navItems = [
+    { name: 'Home', path: '/' },
+    { name: 'Features', path: '/#features' },
+    { name: 'How It Works', path: '/#how-it-works' },
+    { name: 'Help Center', path: '/help' },
+  ];
+
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-border shadow-soft">
-      <div className="container mx-auto px-6">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-gradient-hero rounded-xl flex items-center justify-center shadow-medium">
-              <Shield className="w-6 h-6 text-white" />
-            </div>
-            <span className="text-2xl font-bold text-foreground">CareSync</span>
-          </div>
+    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div className="container flex h-16 items-center">
+        {/* Logo */}
+        <NavLink to="/" className="flex items-center space-x-2">
+          <Eye className="h-8 w-8 text-primary" />
+          <span className="text-xl font-bold text-foreground">Vistick</span>
+        </NavLink>
+
+        {/* Desktop Navigation */}
+        <nav className="ml-auto hidden md:flex items-center space-x-6">
+          {navItems.map((item) => (
+            <NavLink
+              key={item.name}
+              to={item.path}
+              className={({ isActive }) =>
+                `text-sm font-medium transition-gentle hover:text-primary ${
+                  isActive ? "text-primary" : "text-muted-foreground"
+                }`
+              }
+            >
+              {item.name}
+            </NavLink>
+          ))}
           
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
-            <a href="#features" className="text-foreground hover:text-primary transition-smooth font-medium">
-              Features
-            </a>
-            <a href="#how-it-works" className="text-foreground hover:text-primary transition-smooth font-medium">
-              How It Works
-            </a>
-            <a href="#testimonials" className="text-foreground hover:text-primary transition-smooth font-medium">
-              Testimonials
-            </a>
-            <a href="/help" className="text-foreground hover:text-primary transition-smooth font-medium">
-              Help
-            </a>
-          </nav>
-          
-          {/* CTA Buttons */}
-          <div className="hidden md:flex items-center gap-4">
-            <Button variant="ghost" size="default">
-              Sign In
-            </Button>
-            <Button variant="hero" size="default" asChild>
-              <a href="/signup">Get Started</a>
-            </Button>
-          </div>
-          
-          {/* Mobile Menu Button */}
-          <button 
-            className="md:hidden p-2 rounded-lg hover:bg-accent transition-smooth"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={toggleTheme}
+            className="h-9 w-9"
+            aria-label="Toggle theme"
           >
-            <Menu className="w-6 h-6 text-foreground" />
-          </button>
+            {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+          </Button>
+
+          <Button variant="outline" onClick={() => navigate("/signup")}>
+            Sign In
+          </Button>
+          <Button variant="hero" onClick={() => navigate("/signup")}>
+            Get Started
+          </Button>
+        </nav>
+
+        {/* Mobile Menu Button */}
+        <div className="ml-auto flex items-center md:hidden">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={toggleTheme}
+            className="h-9 w-9 mr-2"
+            aria-label="Toggle theme"
+          >
+            {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+          </Button>
+          
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="h-9 w-9"
+            aria-label="Toggle menu"
+          >
+            <Menu className="h-4 w-4" />
+          </Button>
         </div>
-        
-        {/* Mobile Menu */}
-        {isMenuOpen && (
-          <div className="md:hidden py-6 border-t border-border bg-white">
-            <nav className="space-y-4">
-              <a href="#features" className="block py-2 text-foreground hover:text-primary transition-smooth font-medium">
-                Features
-              </a>
-              <a href="#how-it-works" className="block py-2 text-foreground hover:text-primary transition-smooth font-medium">
-                How It Works
-              </a>
-              <a href="#testimonials" className="block py-2 text-foreground hover:text-primary transition-smooth font-medium">
-                Testimonials
-              </a>
-              <a href="/help" className="block py-2 text-foreground hover:text-primary transition-smooth font-medium">
-                Help
-              </a>
-            </nav>
-            
-            <div className="flex flex-col gap-3 mt-6 pt-6 border-t border-border">
-              <Button variant="ghost" size="default" className="justify-start">
+      </div>
+
+      {/* Mobile Navigation */}
+      {isMenuOpen && (
+        <div className="md:hidden border-t bg-background">
+          <nav className="container py-4 space-y-3">
+            {navItems.map((item) => (
+              <NavLink
+                key={item.name}
+                to={item.path}
+                className="block py-2 text-sm font-medium text-muted-foreground hover:text-primary transition-gentle"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {item.name}
+              </NavLink>
+            ))}
+            <div className="pt-3 space-y-2">
+              <Button 
+                variant="outline" 
+                className="w-full"
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  navigate("/signup");
+                }}
+              >
                 Sign In
               </Button>
-              <Button variant="hero" size="default" asChild>
-                <a href="/signup">Get Started</a>
+              <Button 
+                variant="hero" 
+                className="w-full"
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  navigate("/signup");
+                }}
+              >
+                Get Started
               </Button>
             </div>
-          </div>
-        )}
-      </div>
+          </nav>
+        </div>
+      )}
     </header>
   );
 };
