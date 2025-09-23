@@ -2,41 +2,77 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
+/* CareSync Design System - Health & Safety Monitoring Platform
+All colors MUST be HSL for proper theming.
 */
 
 @layer base {
   :root {
+    /* Core Brand Colors */
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 220 26% 14%;
 
+    /* Trust & Safety Primary - Deep Blue */
+    --primary: 220 90% 56%;
+    --primary-foreground: 0 0% 100%;
+    --primary-light: 220 70% 70%;
+    --primary-glow: 220 100% 85%;
+
+    /* Health & Wellness Secondary - Soft Green */
+    --secondary: 160 84% 39%;
+    --secondary-foreground: 0 0% 100%;
+    --secondary-light: 160 60% 55%;
+
+    /* Alert & Warning - Warm Orange */
+    --warning: 24 95% 53%;
+    --warning-foreground: 0 0% 100%;
+    --warning-light: 24 100% 70%;
+
+    /* Success - Fresh Green */
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+    --success-light: 142 60% 50%;
+
+    /* Error - Soft Red */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Surface Colors */
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
+    --card-foreground: 220 26% 14%;
+    
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 220 26% 14%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Neutral Tones */
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 8.9% 46%;
+    
+    --accent: 220 14% 96%;
+    --accent-foreground: 220 26% 14%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Interactive Elements */
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 220 90% 56%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Beautiful Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(220, 90%, 56%), hsl(220, 100%, 85%));
+    --gradient-card: linear-gradient(145deg, hsl(0, 0%, 100%), hsl(220, 14%, 98%));
+    --gradient-success: linear-gradient(135deg, hsl(160, 84%, 39%), hsl(160, 60%, 55%));
+    --gradient-warning: linear-gradient(135deg, hsl(24, 95%, 53%), hsl(24, 100%, 70%));
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Professional Shadows */
+    --shadow-soft: 0 1px 3px hsl(220, 26%, 14% / 0.1), 0 1px 2px hsl(220, 26%, 14% / 0.06);
+    --shadow-medium: 0 4px 6px hsl(220, 26%, 14% / 0.07), 0 2px 4px hsl(220, 26%, 14% / 0.06);
+    --shadow-large: 0 10px 15px hsl(220, 26%, 14% / 0.1), 0 4px 6px hsl(220, 26%, 14% / 0.05);
+    --shadow-glow: 0 0 0 1px hsl(220, 90%, 56% / 0.05), 0 1px 3px hsl(220, 90%, 56% / 0.1);
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Smooth Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
 
