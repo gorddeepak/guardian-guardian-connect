@@ -8,9 +8,6 @@ export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
     port: 8080,
-    allowedHosts: [
-      "guardian-guardian-connect.onrender.com", // 👈 added this
-    ],
   },
   plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
   resolve: {
@@ -19,7 +16,3 @@ export default defineConfig(({ mode }) => ({
     },
   },
 }));
-<<<<<<< HEAD
-=======
-
->>>>>>> a1c9ac8dc7519fe8bad2f9352c5ca01d7509f40c
