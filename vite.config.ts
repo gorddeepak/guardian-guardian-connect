@@ -19,3 +19,7 @@ export default defineConfig(({ mode }) => ({
     },
   },
 }));
+<<<<<<< HEAD
+=======
+
+>>>>>>> a1c9ac8dc7519fe8bad2f9352c5ca01d7509f40c
